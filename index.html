@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقد تطوير تطبيق موبايل</title>
+
+    <!-- html2pdf Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6B7280;
+            --secondary-color: #9CA3AF;
+            --accent-color: #4B5563;
+            --dark-grey: #374151;
+            --light-grey: #F3F4F6;
+            --gradient-1: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+            --gradient-2: linear-gradient(135deg, #9CA3AF 0%, #6B7280 100%);
+            --gradient-3: linear-gradient(135deg, #4B5563 0%, #374151 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-color: 0 10px 40px rgba(107, 114, 128, 0.2);
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: float-particle 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            top: 50%;
+            left: 50%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float-particle {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+
+            33% {
+                transform: translate(50px, -50px) scale(1.2);
+                opacity: 0.6;
+            }
+
+            66% {
+                transform: translate(-30px, 30px) scale(0.8);
+                opacity: 0.4;
+            }
+        }
+
+        /* Enhanced Geometric Shapes */
+        .geometric-shape {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape1 {
+            top: 5%;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        .shape2 {
+            bottom: 5%;
+            left: 5%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.08), transparent);
+            transform: rotate(45deg);
+            animation: rotate 12s linear infinite;
+            backdrop-filter: blur(8px);
+        }
+
+        .shape3 {
+            top: 40%;
+            left: 3%;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent);
+            border-radius: 30px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-40px) rotate(10deg);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(45deg);
+            }
+
+            to {
+                transform: rotate(405deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0.7;
+            }
+        }
+
+        /* Glass Morphism Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 80px 100px;
+            border-radius: 32px;
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Premium Header */
+        .header {
+            text-align: center;
+            padding-bottom: 60px;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 10px 40px rgba(107, 114, 128, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .header-border {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    #6B7280 20%,
+                    #4B5563 50%,
+                    #6B7280 80%,
+                    transparent 100%);
+            border-radius: 3px;
+            box-shadow: 0 2px 15px rgba(107, 114, 128, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 20px rgba(107, 114, 128, 0.2);
+        }
+
+        /* Arabic Decorative Pattern */
+        .ornament {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 30px auto;
+        }
+
+        .ornament-dot {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(107, 114, 128, 0.4);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .ornament-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ornament-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.7;
+            }
+        }
+
+        .ornament-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #6B7280, #4B5563, #6B7280, transparent);
+            border-radius: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            color: #6b7280;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        /* Premium Sections with Icons */
+        .section {
+            margin-bottom: 40px;
+            padding: 0;
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #f0f4f8;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #6B7280, #4B5563);
+            transition: width 0.4s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 15px 50px rgba(107, 114, 128, 0.15);
+            transform: translateY(-5px);
+            border-color: #6B7280;
+        }
+
+        .section:hover::before {
+            width: 10px;
+        }
+
+        .section-header {
+            padding: 35px 45px 25px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%);
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 8px 25px rgba(107, 114, 128, 0.25);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover .section-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .section-title {
+            font-size: 1.7em;
+            color: #1e293b;
+            font-weight: 700;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .section-content {
+            padding: 40px 45px;
+            line-height: 2.3;
+            color: #334155;
+            font-size: 1.1em;
+        }
+
+        .section-content p {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .section-content ol,
+        .section-content ul {
+            margin-right: 35px;
+            margin-top: 20px;
+        }
+
+        .section-content li {
+            margin-bottom: 18px;
+            padding-right: 15px;
+            position: relative;
+        }
+
+        .section-content li::marker {
+            color: #6B7280;
+            font-weight: 700;
+        }
+
+        .section-content strong {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Premium Highlight */
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 6px 16px;
+            border-radius: 8px;
+            border: 2px solid #fbbf24;
+            font-weight: 700;
+            color: #b45309;
+            box-shadow: 0 2px 10px rgba(251, 191, 36, 0.2);
+            display: inline-block;
+        }
+
+        /* Premium Signature Section */
+        .signature-wrapper {
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 3px solid #e5e7eb;
+            position: relative;
+        }
+
+        .signature-wrapper::before {
+            content: '📝 توقيع الطرفين';
+            position: absolute;
+            top: -22px;
+            right: 50%;
+            transform: translateX(50%);
+            background: white;
+            padding: 8px 30px;
+            color: #6B7280;
+            font-size: 1.4em;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(107, 114, 128, 0.2);
+        }
+
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 30px;
+        }
+
+        .signature-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f3f4f6 100%);
+            padding: 45px 40px;
+            border-radius: 24px;
+            border: 3px solid #e5e7eb;
+            box-shadow: 0 10px 40px rgba(107, 114, 128, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signature-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #6B7280, #4B5563);
+        }
+
+        .signature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(107, 114, 128, 0.2);
+            border-color: #6B7280;
+        }
+
+        .signature-box h3 {
+            color: #1e293b;
+            margin-bottom: 35px;
+            font-size: 1.5em;
+            text-align: center;
+            font-weight: 800;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e5e7eb;
+            position: relative;
+        }
+
+        .signature-box h3::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #6B7280, #4B5563);
+            border-radius: 2px;
+        }
+
+        .signature-field {
+            margin-bottom: 28px;
+        }
+
+        .signature-field label {
+            display: block;
+            color: #6B7280;
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .signature-field label::before {
+            content: '▸';
+            color: #4B5563;
+        }
+
+        .signature-field .value {
+            padding: 18px 22px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            font-size: 1.1em;
+            color: #1e293b;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .signature-field .value:hover {
+            border-color: #6B7280;
+            box-shadow: 0 5px 20px rgba(107, 114, 128, 0.1);
+        }
+
+        .signature-line {
+            border-bottom: 4px solid #6B7280;
+            margin: 40px 0 20px 0;
+            padding-bottom: 12px;
+            min-height: 70px;
+            position: relative;
+            background: linear-gradient(to bottom, transparent 0%, rgba(107, 114, 128, 0.05) 100%);
+            border-radius: 8px;
+        }
+
+        .signature-line::after {
+            content: '✍️ التوقيع';
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            font-size: 0.95em;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        /* Premium Footer */
+        .footer-note {
+            margin-top: 60px;
+            padding: 35px 40px;
+            background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            font-size: 1.1em;
+            line-height: 2;
+            box-shadow: 0 15px 50px rgba(107, 114, 128, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-note::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        .footer-note strong {
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        /* Stats Badge */
+        .stats-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 2px solid #6B7280;
+            margin: 5px;
+            font-weight: 600;
+            color: #1e293b;
+            box-shadow: 0 4px 15px rgba(107, 114, 128, 0.15);
+        }
+
+        .stats-badge .icon {
+            font-size: 1.2em;
+        }
+
+        /* ============================================
+           FLOATING PDF DOWNLOAD BUTTON
+        ============================================ */
+
+        .pdf-download-btn {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow:
+                0 10px 40px rgba(107, 114, 128, 0.4),
+                0 0 0 0 rgba(107, 114, 128, 0.7);
+            z-index: 9999;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse-ring 2s infinite;
+            border: none;
+            outline: none;
+        }
+
+        .pdf-download-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 60px rgba(107, 114, 128, 0.6);
+        }
+
+        .pdf-download-btn:active {
+            transform: scale(0.95);
+        }
+
+        .pdf-download-btn svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-download-btn:hover svg {
+            transform: translateY(-3px);
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                box-shadow:
+                    0 10px 40px rgba(107, 114, 128, 0.4),
+                    0 0 0 0 rgba(107, 114, 128, 0.7);
+            }
+
+            50% {
+                box-shadow:
+                    0 10px 40px rgba(107, 114, 128, 0.4),
+                    0 0 0 20px rgba(107, 114, 128, 0);
+            }
+
+            100% {
+                box-shadow:
+                    0 10px 40px rgba(107, 114, 128, 0.4),
+                    0 0 0 0 rgba(107, 114, 128, 0);
+            }
+        }
+
+        /* Tooltip */
+        .pdf-download-btn::before {
+            content: 'تحميل PDF';
+            position: absolute;
+            right: 100%;
+            margin-right: 15px;
+            background: #1f2937;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .pdf-download-btn::after {
+            content: '';
+            position: absolute;
+            right: 100%;
+            margin-right: 5px;
+            border: 8px solid transparent;
+            border-right-color: #1f2937;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-download-btn:hover::before,
+        .pdf-download-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Loading State */
+        .pdf-download-btn.loading {
+            pointer-events: none;
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+
+        .pdf-download-btn.loading svg {
+            animation: rotate-loading 1s linear infinite;
+        }
+
+        @keyframes rotate-loading {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success State */
+        .pdf-download-btn.success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.5);
+            animation: success-bounce 0.6s ease;
+        }
+
+        @keyframes success-bounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Download Progress Bar */
+        .download-progress {
+            position: fixed;
+            bottom: 130px;
+            left: 40px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 280px;
+        }
+
+        .download-progress.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .progress-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6B7280, #4B5563);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(107, 114, 128, 0.5);
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 40px;
+            right: 50%;
+            transform: translateX(50%) translateY(-200%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+            z-index: 10000;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .success-message.show {
+            transform: translateX(50%) translateY(0);
+        }
+
+        .success-message .icon {
+            font-size: 24px;
+            animation: success-icon 0.6s ease;
+        }
+
+        @keyframes success-icon {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                padding: 60px 50px;
+            }
+
+            .header h1 {
+                font-size: 2.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .container {
+                padding: 50px 30px;
+                border-radius: 24px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .header-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+
+            .signature-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-header {
+                padding: 25px 30px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 1.4em;
+            }
+
+            .section-content {
+                padding: 30px 25px;
+                font-size: 1.05em;
+            }
+
+            .geometric-shape {
+                display: none;
+            }
+
+            .particle {
+                display: none;
+            }
+
+            .pdf-download-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .pdf-download-btn svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            .download-progress {
+                bottom: 100px;
+                left: 20px;
+                right: 20px;
+                min-width: auto;
+            }
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .container {
+                box-shadow: none !important;
+                padding: 15px !important;
+                background: white !important;
+                margin: 0 !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .header {
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+
+            .header-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+                margin-bottom: 10px;
+            }
+
+            .header .subtitle {
+                font-size: 1em;
+            }
+
+            .ornament {
+                margin: 10px auto;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 15px;
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .section-header {
+                padding: 15px 20px 10px;
+            }
+
+            .section-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 1.2em;
+            }
+
+            .section-content {
+                padding: 15px 20px;
+                font-size: 0.9em;
+                line-height: 1.6;
+            }
+
+            .signature-wrapper {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+
+            .signature-section {
+                gap: 20px;
+            }
+
+            .signature-box {
+                padding: 20px;
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+            }
+
+            .signature-box h3 {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+
+            .signature-field {
+                margin-bottom: 12px;
+            }
+
+            .signature-field label {
+                font-size: 0.9em;
+                margin-bottom: 5px;
+            }
+
+            .signature-field .value {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+
+            .signature-line {
+                min-height: 40px;
+                margin: 15px 0 10px 0;
+            }
+
+            .footer-note {
+                margin-top: 20px;
+                padding: 15px 20px;
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+
+            .stats-badge {
+                font-size: 0.85em;
+                padding: 4px 10px;
+            }
+
+            .geometric-shape,
+            .particle,
+            .particles,
+            .pdf-download-btn,
+            .download-progress,
+            .success-message {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
+            .header,
+            .section-header,
+            .section-content,
+            .signature-wrapper,
+            .signature-section,
+            .signature-box,
+            .footer-note {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .section-icon,
+            .ornament,
+            .ornament-dot,
+            .ornament-line {
+                display: inline-flex !important;
+                visibility: visible !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Geometric Shapes -->
+    <div class="geometric-shape shape1"></div>
+    <div class="geometric-shape shape2"></div>
+    <div class="geometric-shape shape3"></div>
+
+    <!-- Floating PDF Download Button -->
+    <button class="pdf-download-btn" id="downloadPdfBtn" onclick="downloadPDF()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+    </button>
+
+    <!-- Download Progress -->
+    <div class="download-progress" id="downloadProgress">
+        <div class="progress-title">
+            <span>⏳</span>
+            <span>جاري إنشاء ملف PDF...</span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <span class="icon">✅</span>
+        <span>تم تحميل العقد بنجاح!</span>
+    </div>
+
+    <div class="container" id="contract">
+        <!-- Premium Header -->
+        <div class="header">
+            <div class="header-icon">📱</div>
+            <h1>عقد تطوير تطبيق موبايل</h1>
+            <div class="ornament">
+                <div class="ornament-line"></div>
+                <div class="ornament-dot"></div>
+                <div class="ornament-dot"></div>
+                <div class="ornament-dot"></div>
+                <div class="ornament-line"></div>
+            </div>
+            <p class="subtitle">اتفاقية تطوير تطبيقات احترافية</p>
+            <div class="header-border"></div>
+        </div>
+
+        <!-- البند الأول -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <h2 class="section-title">البند الأول: موضوع العقد</h2>
+            </div>
+            <div class="section-content">
+                <p>يقوم الطرف الأول (المطور) بموجب هذا العقد بتطوير وتنفيذ تطبيق موبايل باستخدام
+                    <strong>Flutter</strong>، وفقًا
+                    للمواصفات الفنية والوظيفية التي يقدمها الطرف الثاني (العميل)، على أن يتم تنفيذ المشروع خلال المدة
+                    الزمنية المتفق عليها بين الطرفين.
+                </p>
+            </div>
+        </div>
+
+        <!-- البند الثاني -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">⏰</div>
+                <h2 class="section-title">البند الثاني: مدة العقد</h2>
+            </div>
+            <div class="section-content">
+                <p>تبدأ مدة العقد من تاريخ توقيعه وتستمر حتى تسليم النسخة النهائية من المشروع، وذلك وفق الجدول الزمني
+                    المحدد في خطة التنفيذ، ما لم يتم تمديدها باتفاق كتابي بين الطرفين.</p>
+            </div>
+        </div>
+
+        <!-- البند الثالث -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">💰</div>
+                <h2 class="section-title">البند الثالث: المقابل المالي وآلية الدفع</h2>
+            </div>
+            <div class="section-content">
+                <ol>
+                    <li>اتفق الطرفان على أن إجمالي قيمة المشروع هي مبلغ وقدره <span class="highlight">خمسة عشر ألف ريال
+                            سعودي (15,000 ريال)</span>.</li>
+                    <li>يتم سداد المبلغ على ثلاث دفعات كما يلي:
+                        <ul style="margin-top: 15px;">
+                            <li><strong>الدفعة الأولى:</strong>
+                                <span class="stats-badge"><span class="icon">📊</span> 30% من إجمالي المبلغ (4,500
+                                    ريال)</span>
+                                <br>تُدفع عند بدء العمل.
+                            </li>
+                            <li><strong>الدفعة الثانية:</strong>
+                                <span class="stats-badge"><span class="icon">📊</span> 30% من إجمالي المبلغ (4,500
+                                    ريال)</span>
+                                <br>تُدفع عند تسليم النسخة الأولية (Initial Version).
+                            </li>
+                            <li><strong>الدفعة الثالثة:</strong>
+                                <span class="stats-badge"><span class="icon">📊</span> 40% من إجمالي المبلغ (6,000
+                                    ريال)</span>
+                                <br>تُدفع عند التسليم النهائي للمشروع بعد اعتماده من الطرف الثاني.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>يتم السداد عن طريق التحويل البنكي أو أي وسيلة دفع أخرى متفق عليها بين الطرفين.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- البند الرابع -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🔐</div>
+                <h2 class="section-title">البند الرابع: حقوق الملكية الفكرية</h2>
+            </div>
+            <div class="section-content">
+                <p>تنتقل جميع حقوق الكود المصدري، والتصميم، واسم التطبيق للطرف الثاني بعد سداد كامل المستحقات المالية
+                    للطرف الأول. ولا يحق للطرف الأول إعادة استخدام أو بيع الكود المصدري أو أي جزء من المشروع لطرف ثالث
+                    دون موافقة خطية من الطرف الثاني.</p>
+            </div>
+        </div>
+
+        <!-- البند الخامس -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🤫</div>
+                <h2 class="section-title">البند الخامس: السرية وعدم الإفصاح</h2>
+            </div>
+            <div class="section-content">
+                <p>يتعهد الطرف الأول بالمحافظة على سرية كافة المعلومات التي يحصل عليها من الطرف الثاني أثناء تنفيذ
+                    المشروع، وعدم إفشائها لأي طرف ثالث دون إذن كتابي مسبق.</p>
+            </div>
+        </div>
+
+        <!-- البند السادس -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🛠️</div>
+                <h2 class="section-title">البند السادس: الدعم الفني والصيانة</h2>
+            </div>
+            <div class="section-content">
+                <ol>
+                    <li>يلتزم الطرف الأول بتقديم دعم فني مجاني لمدة <span class="highlight">شهر واحد</span>
+                        بعد التسليم النهائي للمشروع لمعالجة أي مشاكل أو أخطاء برمجية تظهر.</li>
+                    <li>لا يشمل الدعم الفني أي تعديلات جوهرية أو إضافات جديدة، ويتم الاتفاق عليها بعقد أو عرض سعر منفصل.
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- البند السابع -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">⚠️</div>
+                <h2 class="section-title">البند السابع: الإنهاء والإلغاء</h2>
+            </div>
+            <div class="section-content">
+                <ol>
+                    <li>في حال رغب أي من الطرفين في إنهاء العقد، يجب إخطار الطرف الآخر قبل <strong>(7) أيام عمل</strong>
+                        على الأقل.</li>
+                    <li>في حالة الإنهاء بعد بدء العمل، يحق للطرف الأول الاحتفاظ بالمبالغ التي تم دفعها نظير ما تم إنجازه
+                        فعليًا.</li>
+                    <li>في حالة تأخر الطرف الثاني عن سداد أي دفعة مستحقة لمدة تزيد عن <strong>(10) أيام</strong>، يحق
+                        للطرف الأول تعليق
+                        العمل لحين السداد.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- البند الثامن -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">⚡</div>
+                <h2 class="section-title">البند الثامن: القوة القاهرة</h2>
+            </div>
+            <div class="section-content">
+                <p>لا يتحمل أي من الطرفين المسؤولية عن التأخير أو الإخلال بالتنفيذ بسبب ظروف قاهرة أو خارجة عن الإرادة،
+                    مثل الكوارث الطبيعية أو الانقطاعات التقنية العامة.</p>
+            </div>
+        </div>
+
+        <!-- البند التاسع -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">⚖️</div>
+                <h2 class="section-title">البند التاسع: حل النزاعات</h2>
+            </div>
+            <div class="section-content">
+                <p>يتم حل أي نزاع أو خلاف ينشأ بين الطرفين وديًا، وإن تعذر ذلك يتم اللجوء إلى الجهات القضائية المختصة في
+                    المملكة العربية السعودية.</p>
+            </div>
+        </div>
+
+        <!-- البند العاشر -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📋</div>
+                <h2 class="section-title">البند العاشر: أحكام عامة</h2>
+            </div>
+            <div class="section-content">
+                <p>يعتبر هذا العقد ساري المفعول من تاريخ توقيعه من الطرفين. ويجوز تعديله أو تمديده بموجب اتفاق كتابي
+                    موقع من الطرفين. تم تحرير هذا العقد من نسختين إلكترونيتين بيد كل طرف نسخة للعمل بها عند اللزوم.</p>
+            </div>
+        </div>
+
+        <!-- Premium Signature Section -->
+        <div class="signature-wrapper">
+            <div class="signature-section">
+                <!-- الطرف الأول -->
+                <div class="signature-box">
+                    <h3>👨‍💻 الطرف الأول (المطور)</h3>
+                    <div class="signature-field">
+                        <label>الاسم:</label>
+                        <div class="value">عبد الرحمن رضا محمد</div>
+                    </div>
+                    <div class="signature-field">
+                        <div class="signature-line"></div>
+                    </div>
+                    <div class="signature-field">
+                        <label>التاريخ:</label>
+                        <div class="value">22 / 10 / 2025</div>
+                    </div>
+                </div>
+
+                <!-- الطرف الثاني -->
+                <div class="signature-box">
+                    <h3>👤 الطرف الثاني (العميل)</h3>
+                    <div class="signature-field">
+                        <label>الاسم:</label>
+                        <div class="value">محمد أحمد العمري</div>
+                    </div>
+                    <div class="signature-field">
+                        <div class="signature-line"></div>
+                    </div>
+                    <div class="signature-field">
+                        <label>التاريخ:</label>
+                        <div class="value">22 / 10 / 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Footer -->
+        <div class="footer-note">
+            <strong>🇸🇦 تم تحرير هذا العقد باللغة العربية وفقاً للأنظمة المعمول بها في المملكة العربية
+                السعودية</strong>
+            <br>
+            جميع الحقوق محفوظة © 2025
+            <br>
+            ⚡ عقد قانوني معتمد
+        </div>
+    </div>
+
+    <script>
+        // PDF Download Function
+        async function downloadPDF() {
+            const button = document.getElementById('downloadPdfBtn');
+            const progress = document.getElementById('downloadProgress');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const successMsg = document.getElementById('successMessage');
+            const element = document.getElementById('contract');
+
+            // Show loading state
+            button.classList.add('loading');
+            progress.classList.add('show');
+
+            // Simulate progress
+            let currentProgress = 0;
+            const progressInterval = setInterval(() => {
+                currentProgress += 10;
+                progressBar.style.width = currentProgress + '%';
+                progressText.textContent = currentProgress + '%';
+
+                if (currentProgress >= 90) {
+                    clearInterval(progressInterval);
+                }
+            }, 200);
+
+            // Temporarily adjust container for PDF
+            const originalPadding = element.style.padding;
+            element.style.padding = '20px';
+            
+            // PDF Options - optimized for fewer pages
+            const opt = {
+                margin: [3, 3, 3, 3],
+                filename: 'عقد_تطوير_تطبيق_موبايل.pdf',
+                image: { type: 'jpeg', quality: 0.92 },
+                html2canvas: {
+                    scale: 1.2,
+                    useCORS: true,
+                    letterRendering: true,
+                    scrollY: -window.scrollY,
+                    scrollX: 0,
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight,
+                    logging: false
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: {
+                    mode: 'avoid-all',
+                    avoid: ['.section', '.signature-box']
+                }
+            };
+
+            try {
+                // Generate PDF
+                await html2pdf().set(opt).from(element).save();
+
+                // Restore original padding
+                element.style.padding = originalPadding;
+
+                // Complete progress
+                progressBar.style.width = '100%';
+                progressText.textContent = '100%';
+
+                // Show success
+                setTimeout(() => {
+                    button.classList.remove('loading');
+                    button.classList.add('success');
+                    progress.classList.remove('show');
+                    successMsg.classList.add('show');
+
+                    // Hide success message
+                    setTimeout(() => {
+                        successMsg.classList.remove('show');
+                        button.classList.remove('success');
+                    }, 3000);
+
+                    // Reset progress
+                    setTimeout(() => {
+                        progressBar.style.width = '0%';
+                        progressText.textContent = '0%';
+                    }, 500);
+                }, 500);
+
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                element.style.padding = originalPadding; // Restore on error too
+                button.classList.remove('loading');
+                progress.classList.remove('show');
+                alert('حدث خطأ أثناء إنشاء ملف PDF. يرجى المحاولة مرة أخرى.');
+            }
+
+            clearInterval(progressInterval);
+        }
+
+        // Keyboard shortcut (Ctrl+P or Cmd+P)
+        document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add ripple effect on button click
+        document.getElementById('downloadPdfBtn').addEventListener('click', function (e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    </script>
+</body>
+
+</html>
